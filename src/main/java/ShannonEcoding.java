@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class ShannonEcoding {
 
-    static Map<String, Long> findWords(final String text, int wordLength) throws IllegalArgumentException {
+    private static Map<String, Long> findWords(final String text, int wordLength) throws IllegalArgumentException {
         Map<String, Long> words = new HashMap<>();
 
         if (wordLength < 1) {
@@ -24,15 +24,12 @@ public class ShannonEcoding {
         return words;
     }
 
-    static Map<String, Double> calcProbs(Map<String, Long> words) {
+    static Map<String, Double> calcProbs(String text, int wordLength) {
         Map<String, Double> probs = new HashMap<>();
-
-        if (words == null || words.size() == 0) {
-            throw new IllegalArgumentException("Words is an empty set");
-        }
+        Map<String, Long> words = findWords(text, wordLength);
 
         words.forEach((key, val) -> {
-            Double prob = (double) val / (double) words.size();
+            Double prob = (double) val / (double) text.length();
             probs.put(key, prob);
         });
 
