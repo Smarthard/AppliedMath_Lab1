@@ -12,6 +12,8 @@ public class ShannonEcoding {
 
         for (int i = 0; i <= text.length() - wordLength; i++) {
             String word = text.substring(i, i + wordLength);
+
+            word = word.replaceAll("[-,?!;:]", ".");
             if (words.keySet().contains(word)) {
                 words.put(word, words.get(word) + 1L);
             } else {
